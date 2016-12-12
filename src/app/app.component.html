@@ -1,6 +1,0 @@
-<rs-header></rs-header>
-<h1 *ngIf="!search">Enter user's name to get the list of repos <i class="ion-arrow-up-a"></i></h1>
-<h1 class="error" *ngIf="error">{{error}}</h1>
-<ol>
-  <li *ngFor="let repo of repos"><a [href]="repo.html_url" target="_blank">{{repo.name}}</a></li>
-</ol>

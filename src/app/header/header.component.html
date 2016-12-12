@@ -1,5 +1,0 @@
-<header>
-  <img [src]="user?.avatar_url" alt="avatar" *ngIf="user">
-  <button (click)="onSearch()"><i class="ion-search"></i></button>
-  <input type="text" placeholder="Github's username" (keyup)="onKeyUp($event)" [(ngModel)]="search">
-</header>
