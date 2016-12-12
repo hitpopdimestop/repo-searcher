@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { HttpService } from './http.service';
@@ -10,12 +10,20 @@ import { SearchService } from './search.service';
 })
 export class AppComponent {
 
+  private error = {message: ""};
+  private search;
+  private repos;
+  private readme = {content: ""};
+  private searchSubscription: Subscription;
+  private reposSubscription: Subscription;
+  private errorSubscription: Subscription;
+  private readmeSubscription: Subscription;
+
   constructor(private _http:HttpService, private _search:SearchService) {
     this.searchSubscription = _search.search$.subscribe(
       e => {
       this.search = e;
       this._http.onFetch(this.search);
-      this.error = null;
       }
     );
 
@@ -27,18 +35,22 @@ export class AppComponent {
 
     this.errorSubscription = this._http.error$.subscribe(
       data => {
-        this.repos = null;
         if (data.message) {
-          this.error = `Server response: ${data.message}`
-        } else this.error = `Can't reach the server. Check your internet connection.`;
+          this.error.message = `Something's went wrong :( Server response: ${data.message}`
+        } else this.error.message = `Can't reach the server. Check your internet connection.`;
       }
-    )
+    );
+
+    this.readmeSubscription = this._http.readme$.subscribe(
+      data => {
+        this.readme.content = data;
+      }
+    );
   }
 
-  private error;
-  private search;
-  private repos;
-  private searchSubscription: Subscription;
-  private reposSubscription: Subscription;
-  private errorSubscription: Subscription;
+  getReadme(url) {
+    url += "/contents/README.md";
+    this._http.getReadme(url);
+  }
+
 }

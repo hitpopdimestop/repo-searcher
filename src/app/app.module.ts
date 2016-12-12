@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 import { HttpService } from './http.service';
 import { HeaderComponent } from './header/header.component';
 import { SearchService } from './search.service';
+import { ErrorComponent } from './error/error.component';
+import { ReadmeComponent } from './readme/readme.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    ErrorComponent,
+    ReadmeComponent
   ],
   imports: [
     BrowserModule,

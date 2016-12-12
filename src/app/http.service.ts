@@ -12,6 +12,8 @@ export class HttpService {
   public user$ = new EventEmitter();
   private error;
   public error$ = new EventEmitter();
+  private readme: string;
+  public readme$ = new EventEmitter();
 
   onFetch(username) {
     this._http.get(`https://api.github.com/users/${username}/repos`).subscribe(
@@ -33,6 +35,19 @@ export class HttpService {
       data => {
         this.user = data.json();
         this.user$.emit(this.user);
+      },
+      error => {
+        this.error = error.json();
+        this.error$.emit(this.error);
+      }
+    )
+  }
+
+  getReadme(url) {
+    this._http.get(url).subscribe(
+      data => {
+        this.readme = atob(data.json().content);
+        this.readme$.emit(this.readme);
       },
       error => {
         this.error = error.json();

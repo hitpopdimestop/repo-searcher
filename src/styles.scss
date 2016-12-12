@@ -1,6 +1,7 @@
 $backgroundcolor: #f8f8f8;
 $primarycolor: #395ff7;
 $accentcolor: red;
+$darkgrey: #555;
 
 @import url("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");
 
@@ -95,6 +96,66 @@ body {
       }
     }
 
+  }
+
+  rs-error {
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    color: $accentcolor;
+    background: darken($backgroundcolor, 10%);
+
+    button {
+      display: block;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 3px;
+      box-shadow: none;
+      font-size: 120%;
+      background-color: $primarycolor;
+      color: $backgroundcolor;
+      transition: 0.25s;
+
+      &:hover {
+        background-color: lighten($primarycolor, 15%);
+      }
+    }
+
+  }
+
+  rs-readme {
+    position: absolute;
+    display: block;
+    max-width: 800px;
+    width: 100%;
+    min-height: 100vh;
+    top: 0;
+    color: $darkgrey;
+    background: $backgroundcolor;
+
+    div {
+      padding: 40px;
+      white-space: pre-wrap;
+    }
+
+    button {
+      display: block;
+      margin: 0 auto 40px auto;
+      padding: 20px;
+      border-radius: 3px;
+      box-shadow: none;
+      font-size: 120%;
+      background-color: $primarycolor;
+      color: $backgroundcolor;
+      transition: 0.25s;
+
+      &:hover {
+        background-color: lighten($primarycolor, 15%);
+      }
+    }
   }
 
 }

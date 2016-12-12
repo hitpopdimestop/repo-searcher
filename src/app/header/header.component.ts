@@ -1,7 +1,6 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { SearchService } from '../search.service';
 import { HttpService } from '../http.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'rs-header',
@@ -11,7 +10,6 @@ export class HeaderComponent {
 
   private search: string;
   private user;
-  private errorSubscription: Subscription;
 
   constructor(private _search: SearchService, private _http: HttpService) {
     this._http.user$.subscribe(
@@ -19,10 +17,6 @@ export class HeaderComponent {
         this.user = data;
       }
     );
-
-    this.errorSubscription = this._http.error$.subscribe(
-      data => this.user = null
-    )
   }
 
   onKeyUp(event) {

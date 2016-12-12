@@ -1,6 +1,7 @@
 <rs-header></rs-header>
 <h1 *ngIf="!search">Enter user's name to get the list of repos <i class="ion-arrow-up-a"></i></h1>
-<h1 class="error" *ngIf="error">{{error}}</h1>
 <ol>
-  <li *ngFor="let repo of repos"><a [href]="repo.html_url" target="_blank">{{repo.name}}</a></li>
+  <li *ngFor="let repo of repos"><a (click)="getReadme(repo.url)">{{repo.name}}</a></li>
 </ol>
+<rs-error [error]="error" *ngIf="error.message"></rs-error>
+<rs-readme [readme]="readme" *ngIf="readme.content"></rs-readme>
