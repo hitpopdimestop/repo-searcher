@@ -36,7 +36,7 @@ export class AppComponent {
     this.errorSubscription = this._http.error$.subscribe(
       data => {
         if (data.message) {
-          this.error.message = `Something's went wrong :( Server response: ${data.message}`
+          this.error.message = `Something's wrong :( Server response: ${data.message}`
         } else this.error.message = `Can't reach the server. Check your internet connection.`;
       }
     );
